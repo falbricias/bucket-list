@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Details
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h2>Wish : {{ wish.title }}</h2>
+        <br>
+        <div>Description : {{ wish.description }}</div>
+        <br>
+        <div>Author : {{ wish.author }}</div>
+        <br>
+        <div>Created : {{ wish.dateCreated | date('d M Y @ H:i:s') }}</div>
+    </div>
+
+{% endblock %}
+
+

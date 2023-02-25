@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Add
+{% endblock %}
+
+{% block body %}
+    <h2>Add a new wish !</h2>
+
+    {# Déclenchement de l'affichage du form de façon plus fine #}
+    {# Début du form #}
+    {{ form_start(wishForm) }}
+
+    <div class="machin">
+        {# Découpage par champ #}
+        {{ form_label(wishForm.title) }}
+        {{ form_errors(wishForm.title) }}
+        {{ form_widget(wishForm.title) }}
+    </div>
+
+    {# Affichage du reste du form #}
+    {{ form_rest(wishForm) }}
+
+    <button>Valider</button>
+
+    {# Fin du formulaire #}
+    {{ form_end(wishForm) }}
+
+{% endblock %}

@@ -1,23 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
 
-<h1>Welcome in your bucket list</h1>
+{# parent() permet de récupérer ce que contient le bloc de la base #}
+{% block title %} {{ parent() }} | Home {% endblock %}
 
-<h2>Make a wish and breathe !</h2>
+{# sije redéfinis le contenu, j'écrase le contenu présent dans la base #}
+{% block body %}
+    <h1>Welcome to my {{ name }} !</h1>
 
-<ul>
-    <li>Visit Rome</li>
-    <li>Go to Japan</li>
-    <li>Learn to speak french</li>
-</ul>
+    <h2>{{ name }}'s detail</h2>
 
-</body>
-</html>
+    <ul>
+        {% for val in list %}
+            <li>{{ val }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
