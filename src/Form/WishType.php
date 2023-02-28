@@ -20,10 +20,10 @@ class WishType extends AbstractType
             ->add('title', TextType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'name',
-                'label' => 'Associated category',
+//                'choice_label' => 'name', // => remplacé par la méthode magique __toString de l'entité Category
+//                'label' => 'Associated category', // => remplacé par la méthode magique __toString de l'entité Category
                 'query_builder' => function(CategoryRepository $categoryRepository){
-                    $qb = $categoryRepository->createQueryBuilder('c');
+                    $qb = $categoryRepository->createQueryBuilder('c')->addOrderBy('c.name');
                     return $qb;
                 }
             ])

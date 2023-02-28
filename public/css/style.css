@@ -7,6 +7,17 @@ body {
     font-family: 'Expletus Sans', cursive;
 }
 
+.mastalogo{
+    color: #E6E6FA;
+    text-transform: uppercase;
+    font-family: 'Fugaz One', cursive;
+    font-size: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
 .flex_div{
     display: flex;
     flex-direction: row;
