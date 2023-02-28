@@ -49,7 +49,8 @@ class Wish
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCreated = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wishes')]
+    //Fetch : 'EAGER' permet de forcer le chargement des éléments (via une jointure)
+    #[ORM\ManyToOne(inversedBy: 'wishes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 

@@ -17,7 +17,7 @@ class WishController extends AbstractController
     public function wishList(WishRepository $wishRepository): Response
     {
         //Récupère l'ensemble des voeux en DB
-        $wishes = $wishRepository->findBy(['isPublished' => true], ['dateCreated' => 'DESC']);
+        $wishes = $wishRepository->findPublishedWishes();
 
         dump($wishes);
 
