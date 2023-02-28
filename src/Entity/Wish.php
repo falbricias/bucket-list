@@ -50,6 +50,7 @@ class Wish
     private ?\DateTimeInterface $dateCreated = null;
 
     #[ORM\ManyToOne(inversedBy: 'wishes')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
     public function getId(): ?int
