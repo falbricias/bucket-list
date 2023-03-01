@@ -167,3 +167,25 @@ textarea{
 .seasons{
     margin-top: 15px;
 }
+
+
+/************************** Module 8 User & authentification *****************************************/
+
+.btnSubmitLogIn{
+    background-color: #4CAF50; /* couleur de fond */
+    border: none; /* pas de bordure */
+    color: white; /* couleur du texte */
+    padding: 15px 32px; /* espacement interne */
+    text-align: center; /* alignement du texte */
+    text-decoration: none; /* pas de soulignement */
+    display: inline-block; /* affichage en ligne */
+    font-size: 16px; /* taille de la police */
+    margin: 4px 2px; /* marges extérieures */
+    cursor: pointer; /* curseur en forme de main */
+    border-radius: 50px; /* bordure arrondie */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* ombre */
+}
+
+.btnSubmitLogIn:hover {
+    background-color: #3e8e41; /* couleur de fond au survol */
+}
