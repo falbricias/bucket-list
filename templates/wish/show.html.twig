@@ -16,6 +16,8 @@
         <div>Author : {{ wish.author }}</div>
         <br>
         <div>Created : {{ wish.dateCreated | date('d M Y @ H:i:s') }}</div>
+        <br>
+        <a href="{{ path('wish_update', {'id': wish.id}) }}"><button>Update</button></a>
     </div>
 
 {% endblock %}

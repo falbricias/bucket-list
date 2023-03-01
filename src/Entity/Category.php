@@ -19,6 +19,7 @@ class Category
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Wish::class)]
+    //mappedBy: 'wishes' => signifie que l'attribut wishes est mappé avec l'attribut category de l'entité Wish
     private Collection $wishes;
 
     public function __construct()

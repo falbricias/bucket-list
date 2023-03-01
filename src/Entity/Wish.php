@@ -51,6 +51,7 @@ class Wish
 
     //Fetch : 'EAGER' permet de forcer le chargement des éléments (via une jointure)
     #[ORM\ManyToOne(inversedBy: 'wishes', fetch: 'EAGER')]
+    //inversedBy: 'wishes' => signifie que l'attribut catégorie est mappé avec l'attribut wishes de l'entité Category
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 

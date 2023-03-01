@@ -46,6 +46,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        //Redirection ver la page d'accueil une fois l'authentification validée
         return new RedirectResponse($this->urlGenerator->generate('main_home'));
     }
 

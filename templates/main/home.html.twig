@@ -5,7 +5,10 @@
 
 {# sije redéfinis le contenu, j'écrase le contenu présent dans la base #}
 {% block body %}
-    <h1>Welcome to the {{ name }} project !</h1>
+    <h1>Welcome to the {{ name }} project
+        {% if app.user %}
+            {{ app.user.userIdentifier | capitalize }}
+        {% endif %} !</h1>
 
     <h2>{{ name }}'s detail</h2>
 
