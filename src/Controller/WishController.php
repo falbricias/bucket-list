@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\Utils\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +53,10 @@ class WishController extends AbstractController
 
     #[Route ('/add', name : 'add')]
     //#[IsGranted("ROLE_USER")] => pour info : car déjà paramétré dans le security.yaml => ligne 35 : - { path: ^/wish/add, roles: ROLE_USER }
-    public function add(WishRepository $wishRepository, EntityManagerInterface $entityManager, Request $request){
+    public function add(WishRepository $wishRepository,
+                        EntityManagerInterface $entityManager,
+                        Request $request,
+                        Censurator $censurator){
 
         $wish = new Wish();
         /*0 - Dans notre formulaire d'ajout d'un voeu :
@@ -67,13 +71,27 @@ class WishController extends AbstractController
 
         //3 - Traitement si le formulaire est soumis
         if($wishForm->isSubmitted() && $wishForm->isValid()){
-            //Sauvegarde en DB la nouvelle série saisie par l'utilisateur
+
+            //Avant la sauvegarde en DB => checke les mots et censure ceux concernés
+            $titleCensored = $censurator->purify($wish->getTitle());
+            $descriptionCensored = $censurator->purify($wish->getDescription());
+
+            //Re-sette le voeu avec titre et description censurés
+            $wish->setTitle($titleCensored);
+            $wish->setDescription($descriptionCensored);
+
+            /* Option plus rapide :
+             * $wish->setTitle($censurator->purify($wish->getTitle()));
+             * $wish->setDescription($censurator->purify($wish->getDescription()));
+             * */
+
+            //Sauvegarde en DB le nouveau voeu saisi par l'utilisateur
             $wishRepository->save($wish, true);
 
-            //Message flash d'info d'ajout de la série OK
+            //Message flash d'info d'ajout du voeu OK
             $this->addFlash('success', 'Wish added ! You are a winner !');
 
-            //Redirige vers la page de détail de la série
+            //Redirige vers la page de détail du voeu
             return $this->redirectToRoute('wish_show', ['id' => $wish->getId()]);
 
         }
