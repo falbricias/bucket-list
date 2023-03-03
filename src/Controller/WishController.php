@@ -73,6 +73,7 @@ class WishController extends AbstractController
         if($wishForm->isSubmitted() && $wishForm->isValid()){
 
             //Avant la sauvegarde en DB => checke les mots et censure ceux concernés
+            //ICI : fait appel à la méthode purify du service Censurator (src->Utils->Censurator)
             $titleCensored = $censurator->purify($wish->getTitle());
             $descriptionCensored = $censurator->purify($wish->getDescription());
 
